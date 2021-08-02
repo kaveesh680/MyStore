@@ -1,8 +1,9 @@
 import React from "react";
+import TopNavBar from "./components/top-nav-bar/TopNavBar";
 
 const Client:React.FC = () => {
     return(
-        <h1>Hello World</h1>
+        <TopNavBar/>
     )
 }
 
