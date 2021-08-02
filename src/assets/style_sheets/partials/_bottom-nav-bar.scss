@@ -1,0 +1,30 @@
+@import "variables";
+
+.bottomNavBar {
+  font-size: 1em;
+  font-weight: 500;
+
+  .dropdown {
+    border-radius: .5em;
+    border: 1px solid $bottom-nav-dropdown-border !important;
+
+    a {
+      color: $bottom-nav-font-color;
+      padding-top: .375em;
+      padding-bottom: .375em;
+    }
+  }
+
+  .navbar-collapse {
+    .navbar-nav {
+      a {
+        color: $bottom-nav-font-color;
+      }
+    }
+  }
+
+  button {
+    border: none;
+    padding-right: .375em;
+  }
+}
