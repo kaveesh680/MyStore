@@ -1,9 +1,18 @@
+//--Media-Break-Points
+$layout-breakpoint-xs: 576px;
+$layout-breakpoint-md: 768px;
+$layout-breakpoint-lg: 992px;
+$layout-breakpoint-xl: 1200px;
+
 //--Top-Nav-Bar
-$nav-link-color:black;
+$nav-link-color: black;
 $logo-color: #0abd48;
-$badge-shadow-color:rgba(0, 0, 0, 0.5);
-$badge-font-color:white;
+$badge-shadow-color: rgba(0, 0, 0, 0.5);
+$badge-font-color: white;
 
 //--Bottom-Nav
 $bottom-nav-font-color: #555555;
 $bottom-nav-dropdown-border: #1E7E34;
+
+//--Welcome-Banner
+$welcome-green-color: #4a8601;
