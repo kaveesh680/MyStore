@@ -1,0 +1,77 @@
+@import "variables";
+
+.categoryArea {
+  font-size: 1em;
+
+  .categoryHeader {
+    h2 {
+      color: $categories-header-color;
+    }
+  }
+
+  .categories {
+    max-width: 14.075em;
+    cursor: pointer;
+
+    .category {
+      border-radius: .5em;
+      border: 2px solid $category-border-color;
+      max-width: 13.625em;
+
+      &:hover {
+        background-color: $category-item-hover-color;
+        border-color: $categories-header-color;
+      }
+
+      img {
+        width: 7em;
+      }
+
+      p {
+        font-size: 1.6em;
+        color: $category-item-title;
+      }
+    }
+  }
+
+}
+
+@media (max-width: $layout-breakpoint-xs) {
+  .categoryArea {
+    font-size: .45em;
+
+    .categoryHeader {
+      h2 {
+        font-size: 3em;
+      }
+    }
+
+    .categories {
+      .category {
+        p {
+          font-size: 1em;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $layout-breakpoint-xs) and (max-width: $layout-breakpoint-md) {
+  .categoryArea {
+    font-size: 3em;
+
+    .categories {
+      .category {
+        img {
+          width: 5em;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $layout-breakpoint-md) and (max-width: $layout-breakpoint-lg) {
+  .categoryArea {
+    font-size: .8em;
+  }
+}

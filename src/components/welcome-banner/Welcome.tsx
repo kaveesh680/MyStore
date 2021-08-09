@@ -5,8 +5,8 @@ import BannerImg from '../../assets/images/welcome/welcome_banner.webp';
 const Welcome: React.FC = () => {
     return (
         <Container fluid={true} className='px-0'>
-            <Row className="welcome">
-                <Col xs={12}>
+            <Row className="welcome mr-0">
+                <Col xs={12} className='pr-0'>
                     <Image src={BannerImg} fluid={true} alt='Banner'/>
                 </Col>
                 <Col xs={{span: 7, offset: 5}} md={{span: 6, offset: 6}} className="banner-text">
