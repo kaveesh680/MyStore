@@ -1,20 +1,24 @@
-import React from "react";
-import TopNavBar from "./components/top-nav-bar/TopNavBar";
-import BottomNavBar from "./components/bottom-nav-bar/BottomNavBar";
-import Welcome from "./components/welcome-banner/Welcome";
-import SearchBar from "./components/search-bar/SearchBar";
-import CategoryArea from "./components/catogories/CategoryArea";
-import Products from "./components/ProductUX/Products";
+import React, {lazy, Suspense} from "react";
+import Loading from "./components/loading/Loading";
+
+const TopNavBar = lazy(() => import('./components/top-nav-bar/TopNavBar'));
+const Welcome = lazy(() => import('./components/welcome-banner/Welcome'));
+const BottomNavBar = lazy(() => import('./components/bottom-nav-bar/BottomNavBar'));
+const SearchBar = lazy(() => import('./components/search-bar/SearchBar'));
+const CategoryArea = lazy(() => import('./components/categories/CategoryArea'));
+const Products = lazy(() => import('./components/ProductUX/Products'));
 
 const Client: React.FC = () => {
     return (
         <React.Fragment>
-            <TopNavBar/>
-            <BottomNavBar/>
-            <Welcome/>
-            <SearchBar/>
-            <CategoryArea/>
-            <Products/>
+            <Suspense fallback={<Loading/>}>
+                <TopNavBar/>
+                <BottomNavBar/>
+                <Welcome/>
+                <SearchBar/>
+                <CategoryArea/>
+                <Products/>
+            </Suspense>
         </React.Fragment>
     )
 }
