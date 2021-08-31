@@ -4,6 +4,7 @@ import BottomNavBar from "./components/bottom-nav-bar/BottomNavBar";
 import Welcome from "./components/welcome-banner/Welcome";
 import SearchBar from "./components/search-bar/SearchBar";
 import CategoryArea from "./components/catogories/CategoryArea";
+import Products from "./components/ProductUX/Products";
 
 const Client: React.FC = () => {
     return (
@@ -13,6 +14,7 @@ const Client: React.FC = () => {
             <Welcome/>
             <SearchBar/>
             <CategoryArea/>
+            <Products/>
         </React.Fragment>
     )
 }
