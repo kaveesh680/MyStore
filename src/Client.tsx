@@ -7,6 +7,7 @@ const BottomNavBar = lazy(() => import('./components/bottom-nav-bar/BottomNavBar
 const SearchBar = lazy(() => import('./components/search-bar/SearchBar'));
 const CategoryArea = lazy(() => import('./components/categories/CategoryArea'));
 const Products = lazy(() => import('./components/ProductUX/Products'));
+const Footer = lazy(() => import('./components/footer/Footer'));
 
 const Client: React.FC = () => {
     return (
@@ -18,6 +19,7 @@ const Client: React.FC = () => {
                 <SearchBar/>
                 <CategoryArea/>
                 <Products/>
+                <Footer/>
             </Suspense>
         </React.Fragment>
     )
