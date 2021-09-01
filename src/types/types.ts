@@ -25,3 +25,8 @@ export interface IProduct {
     product: Item,
     inCart: boolean
 }
+
+export interface ICheckoutProduct {
+    quantity: number
+    product: Item
+}

@@ -7,11 +7,11 @@ const FooterLinArea: React.FC = () => {
         <Row className='footer-link-area mr-0'>
             <Col xs={12} className='pr-0'>
                 <ListGroup horizontal={"sm"} className='justify-content-center'>
-                    <FooterLink name={"HOME"}/>
-                    <FooterLink name={"ABOUT US"}/>
-                    <FooterLink name={"FAQ"}/>
-                    <FooterLink name={"PRICING"}/>
-                    <FooterLink name={"CONTACT US"}/>
+                    <FooterLink name={"HOME"} path="/home"/>
+                    <FooterLink name={"ABOUT US"} path="/home"/>
+                    <FooterLink name={"FAQ"} path="/home"/>
+                    <FooterLink name={"PRICING"} path="/home"/>
+                    <FooterLink name={"CONTACT US"} path="/home"/>
                 </ListGroup>
             </Col>
         </Row>

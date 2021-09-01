@@ -40,10 +40,11 @@
   .logoArea {
     border-top: 1px solid #C0C0C0;
 
-    span {
+    .logo {
       font-size: 3em;
       font-weight: 600;
       color: $logo-color;
+      cursor: pointer;
     }
 
     .checkoutArea {
