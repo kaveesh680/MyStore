@@ -6,6 +6,7 @@ const Welcome = lazy(() => import('./components/welcome-banner/Welcome'));
 const SearchBar = lazy(() => import('./components/search-bar/SearchBar'));
 const CategoryArea = lazy(() => import('./components/categories/CategoryArea'));
 const Products = lazy(() => import('./components/ProductUX/Products'));
+const CheckOut = lazy(() => import('./components/cart-table/Checkout'));
 
 const Routes: React.FC = () => {
     return (
@@ -16,6 +17,9 @@ const Routes: React.FC = () => {
                     <SearchBar/>
                     <CategoryArea/>
                     <Products/>
+                </Route>
+                <Route path='/checkout' exact>
+                    <CheckOut/>
                 </Route>
             </Switch>
         </Suspense>

@@ -1,5 +1,6 @@
 import React from "react";
 import {Button} from "react-bootstrap";
+import {useHistory} from "react-router-dom";
 
 type CheckOutBtnProps = {
     classname:string
@@ -8,9 +9,10 @@ type CheckOutBtnProps = {
 const CheckOutBtn:React.FC<CheckOutBtnProps> = (props) => {
 
     const {classname} = props;
+    let history = useHistory();
 
     return(
-        <Button className={classname}>Check Out</Button>
+        <Button className={classname} onClick={() => history.push('./checkout')}>Check Out</Button>
     )
 }
 
