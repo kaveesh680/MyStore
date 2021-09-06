@@ -1,0 +1,42 @@
+@import "variables";
+
+.login {
+  font-size: 1em;
+
+  img {
+    width: 32em;
+  }
+
+  .login-form {
+    h3 {
+      font-size: 3em;
+      color: $logo-color;
+    }
+
+    form {
+      border-bottom: 1px solid $product-border-color;
+
+      .form-group {
+        .form-label {
+          font-size: 1em;
+          font-weight: 500;
+        }
+
+        .form-control {
+          border: 2px solid $product-border-color;
+          font-size: 1em;
+        }
+      }
+
+      button {
+        background-color: $logo-color;
+        min-width: 7em;
+        border-color: $logo-color;
+      }
+    }
+    .signup{
+      font-weight: 500;
+    }
+
+  }
+}
