@@ -27,6 +27,12 @@ export interface IProduct {
 }
 
 export interface ICheckoutProduct {
-    quantity: number
+    quantity: number,
     product: Item
+}
+
+export interface IOption {
+    value: string,
+    label: string,
+    flag: string
 }

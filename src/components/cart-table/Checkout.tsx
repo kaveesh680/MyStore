@@ -21,7 +21,7 @@ const Checkout: React.FC = () => {
                 <Col xs={12} xl={10} className='px-0'>
                     <Row>
                         <Col xs={12}>
-                            <Row className='pl-0 pl-md-4 ml-0 mr-2 '>
+                            <Row className='pl-0 pl-md-4 ml-0 mr-md-2 mr-0 pr-md-3'>
                                 <CheckoutHeader/>
                                 <ContinueShoppingBtn/>
                             </Row>

@@ -9,7 +9,7 @@ const ContinueShoppingBtn: React.FC = () => {
     return (
         <Col md={4} xl={2} lg={3} sm={6} className='px-0'>
             <Button variant='outline-secondary' className='continueShoppingBtn'
-                    onClick={() => history.push('/checkout')}>
+                    onClick={() => history.push('/home')}>
                 <BiChevronLeft className='pb-1'/>Continue Shopping
             </Button>
         </Col>
