@@ -1,11 +1,18 @@
 import React from "react";
 import {Col, Image} from "react-bootstrap";
-import LogInCart from "../../assets/images/login/logInCart.png";
 
-const ImgArea: React.FC = () => {
+type ImgAreaProps = {
+    img: string
+    classname:string
+}
+
+const ImgArea: React.FC<ImgAreaProps> = (props) => {
+
+    const {img, classname} = props;
+
     return (
-        <Col xs={12} md={6}>
-            <Image src={LogInCart} alt="login"/>
+        <Col xs={12} md={6} className={classname}>
+            <Image src={img} alt="login" fluid={true}/>
         </Col>
     )
 }

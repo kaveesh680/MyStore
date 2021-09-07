@@ -9,6 +9,7 @@ const Products = lazy(() => import('./components/ProductUX/Products'));
 const CheckOut = lazy(() => import('./components/cart-table/Checkout'));
 const CashOnDelivery = lazy(() => import('./components/checkout-form/CashOnDelivery'));
 const LogIn = lazy(() => import('./components/login/LogIn'));
+const Register = lazy(() => import('./components/register/Register'));
 
 const Routes: React.FC = () => {
     return (
@@ -26,6 +27,9 @@ const Routes: React.FC = () => {
                 </Route>
                 <Route path='/login' exact>
                     <LogIn/>
+                </Route>
+                <Route path='/register' exact>
+                    <Register/>
                 </Route>
             </Switch>
         </Suspense>

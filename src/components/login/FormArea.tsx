@@ -1,6 +1,6 @@
 import React, {FormEvent, useState} from "react";
 import {Col, Form, FormControl, Row} from "react-bootstrap";
-import LogInHeader from "./LogInHeader";
+import FormHeader from "./FormHeader";
 import LogInBtn from "./LogInBtn";
 import {useHistory} from "react-router-dom";
 
@@ -33,8 +33,8 @@ const FormArea: React.FC = () => {
     }
 
     return (
-        <Col xs={12} md={6} className='login-form mt-5 pl-5'>
-            <LogInHeader/>
+        <Col xs={12} md={6} className='login-form mt-2 pl-lg-5'>
+            <FormHeader text="Log In"/>
             <Row>
                 <Col xs={12}>
                     <Form noValidate validated={isValidate} onSubmit={handleSubmit}>
@@ -72,7 +72,7 @@ const FormArea: React.FC = () => {
                                 />
                             </Col>
                         </Row>
-                        <LogInBtn/>
+                        <LogInBtn text="Log In" checkValue={true}/>
                     </Form>
                     <Row className='text-center mt-2 signup'>
                         <Col xs={12}>
