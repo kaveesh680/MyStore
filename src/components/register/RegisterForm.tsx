@@ -1,4 +1,4 @@
-import React, {FormEvent, useState} from "react";
+import React, {FormEvent, useEffect, useState} from "react";
 import {Col, Form, FormControl, Row} from "react-bootstrap";
 import FormHeader from "../login/FormHeader";
 import LogInBtn from "../login/LogInBtn";
@@ -11,6 +11,7 @@ const RegisterForm: React.FC = () => {
     const [lastName, setLastName] = useState<string | null>(null);
     const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
     const [checkValue, setCheckValue] = useState<boolean>(false);
+    const [matched, setMatched] = useState<boolean>(false);
 
     const handleOnCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCheckValue(e.target.checked);
@@ -40,12 +41,21 @@ const RegisterForm: React.FC = () => {
         e.preventDefault();
 
         if (!email || email === "" || !password || password === "" || !firstName || firstName === "" || !lastName ||
-            lastName === "" || !confirmPassword || confirmPassword === "" || confirmPassword !== password) {
+            lastName === "" || !confirmPassword || confirmPassword === "" || password !== confirmPassword) {
             setIsValidate(true);
             return
         }
         alert("successfully logged!");
     }
+
+    useEffect(() => {
+        if (password !== confirmPassword && confirmPassword !== null) {
+            setMatched(true);
+            return;
+        }
+        setMatched(false);
+    }, [confirmPassword, isValidate]);
+
 
     return (
         <Col xs={12} md={6} className='register-form mt-3 pl-lg-5'>
@@ -119,6 +129,8 @@ const RegisterForm: React.FC = () => {
                             <FormControl.Feedback type="invalid">
                                 <p className="font-weight-bold mb-0">Enter Confirm Password</p>
                             </FormControl.Feedback>
+                            {matched ? <small className='text-danger'>password not matched</small> : ""}
+
 
                         </Form.Group>
                         <Row className='text-center mt-3'>

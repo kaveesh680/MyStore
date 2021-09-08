@@ -12,7 +12,7 @@ const CheckOutBtn:React.FC<CheckOutBtnProps> = (props) => {
     let history = useHistory();
 
     return(
-        <Button className={classname} onClick={() => history.push('./checkout')}>Check Out</Button>
+        <Button className={classname} onClick={() => history.push('/checkout')}>Check Out</Button>
     )
 }
 
