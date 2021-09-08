@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Card, Col, Container, Form, FormControl, FormGroup, InputGroup, Row} from "react-bootstrap";
 import SignInArea from "./SignInArea";
 import {FaRegCreditCard, FaRegMoneyBillAlt, FiEye, FiEyeOff} from "react-icons/all";
@@ -22,6 +22,7 @@ const CashOnDelivery: React.FC = () => {
     const [isFormValidated, setIsFormValidated] = useState<boolean>(false);
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [changeShippingAddress, setChangeShippingAddress] = useState<boolean>(false);
+    const [matched, setMatched] = useState<boolean>(false);
 
     const handleOnChangeShippingAddress = () => {
         setChangeShippingAddress(true);
@@ -83,15 +84,23 @@ const CashOnDelivery: React.FC = () => {
 
     const handleOnSubmit = (e: React.MouseEvent<HTMLInputElement>) => {
         e.preventDefault();
-        if (fullName === '' || fullName === null || address === '' || address === null || city === '' || city === null ||
-            postalCode === '' || postalCode === null || country === '' || country === null || phoneNumber === '' ||
-            phoneNumber === null || email === '' || retypeEmail === '' || retypeEmail === null || password === '' ||
-            password === null) {
+        if (fullName === '' || !fullName || address === '' || !address || city === '' || !city ||
+            postalCode === '' || !postalCode || country === '' || !country || phoneNumber === '' ||
+            !phoneNumber || email === '' || !email || retypeEmail === '' || !retypeEmail || password === '' ||
+            !password || email !== retypeEmail) {
             setIsFormValidated(true);
             return;
         }
         alert("order confirmed");
     }
+
+    useEffect(() => {
+        if (email !== retypeEmail && retypeEmail !== null) {
+            setMatched(true);
+            return;
+        }
+        setMatched(false);
+    }, [retypeEmail, isFormValidated]);
 
     return (
         <Container className='cashOnDelivery' fluid={true}>
@@ -194,7 +203,7 @@ const CashOnDelivery: React.FC = () => {
                                                             </InputGroup.Text>
                                                         </InputGroup.Prepend>
                                                         <Form.Control
-                                                            type="text"
+                                                            type="number"
                                                             value={phoneNumber ? phoneNumber : ''}
                                                             onChange={handleOnPhoneNumberChange}
                                                             required
@@ -227,9 +236,12 @@ const CashOnDelivery: React.FC = () => {
                                                             onChange={handleOnRetypeEmailChange}
                                                             required
                                                         />
-                                                        <FormControl.Feedback type="invalid">
+                                                        {!matched && <FormControl.Feedback type="invalid">
                                                             <p className="font-weight-bold mb-0">Enter Retype Email</p>
-                                                        </FormControl.Feedback>
+                                                        </FormControl.Feedback>}
+
+                                                        {matched ? <small className='text-danger'>email not
+                                                            matched</small> : ""}
                                                     </Col>
 
 
