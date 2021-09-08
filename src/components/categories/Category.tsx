@@ -1,5 +1,6 @@
-import React, {CSSProperties, useState} from "react";
+import React, {CSSProperties, useEffect, useState} from "react";
 import {Col, Image} from "react-bootstrap";
+import {useHistory, useLocation} from "react-router-dom";
 import {categoryStyles} from "../../custom-styles/CustomCategoryStyles";
 
 type CategoryProps = {
@@ -10,11 +11,21 @@ type CategoryProps = {
 const Category: React.FC<CategoryProps> = (props) => {
 
     const {image, category} = props;
+    let history = useHistory();
+    let {pathname} = useLocation();
 
     const [styles, setStyles] = useState<CSSProperties>({});
 
+    useEffect(() => {
+        if (pathname === `/home/${category}`) {
+            setStyles(categoryStyles);
+        } else {
+            setStyles({});
+        }
+    }, [pathname])
+
     const handleClick = () => {
-        setStyles(categoryStyles);
+        history.push(`/home/${category}`);
     }
 
     return (
