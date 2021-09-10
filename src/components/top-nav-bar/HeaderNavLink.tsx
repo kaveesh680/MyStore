@@ -22,7 +22,8 @@ const HeaderNavLink: React.FC<HeaderNavLinkProps> = (props) => {
     }
 
     return (
-        <Nav.Link href="#home" className='pr-4 pl-0'>
+        <Nav.Link className='pr-4 pl-0'
+                  href={icon === "phone" ? `mailto:${"support@gmail.com"}?subject=${encodeURIComponent("Contact Us") || ''}&body=${encodeURIComponent("Hi") || ''}` : "home"}>
             {renderIcon()}
             {detail}
         </Nav.Link>
