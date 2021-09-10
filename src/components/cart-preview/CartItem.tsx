@@ -1,18 +1,17 @@
 import React from "react";
 import {Col, Image, Row} from "react-bootstrap";
 import DeleteIcon from "../common/DeleteIcon";
-import {Item} from "../../types/types";
 import QuantityToggle from "../common/QuantityToggle";
+import {IProduct} from "../../types/types";
 
 type CartItemProps = {
-    product: Item
+    product: IProduct
     quantity: number
     index: number
 }
 
 const CartItem: React.FC<CartItemProps> = (props) => {
     const {product, quantity, index} = props;
-
 
     return (
         <Row className="cart-item border-bottom mt-3 pb-2 mx-0">
@@ -21,11 +20,12 @@ const CartItem: React.FC<CartItemProps> = (props) => {
             </Col>
             <Col xs={5} md={4} className="pl-2 pl-md-4 pr-0">
                 <label className="cart-item-name mb-3">{product.name}</label><br/>
-                <label className="cart-item-qty">Qty: <QuantityToggle quantity={quantity} index={index}/></label>
+                <label className="cart-item-qty">Qty: <QuantityToggle quantity={quantity} index={index}
+                                                                      id={product.id}/></label>
             </Col>
             <Col xs={3} md={4} className="text-right px-0 pr-md-2">
                 <label className="mb-3">
-                    <DeleteIcon size={15} color={"#3c6382"}/>
+                    <DeleteIcon size={15} color={"#3c6382"} id={product.id}/>
                 </label>
                 <br/>
                 <label className="cart-item-subtotal">

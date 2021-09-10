@@ -2,18 +2,14 @@ import React from "react";
 import BootstrapTable, {PaginationOptions} from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import Quantity from "./Quantity";
-import DeleteIcon from "./DeleteIcon";
+import DeleteIcon from "../common/DeleteIcon";
 import CartImage from "./CartImage";
 import UnitPrice from "./UnitPrice";
-import {ICheckoutProduct} from "../../types/types";
+import {ICheckoutProduct, IProduct} from "../../types/types";
 import EmptyCartPreview from "../cart-preview/EmptyCartPreview";
-import CabbageImg from "../../assets/images/groceryImages/cabbage.png";
-import CarrotImg from "../../assets/images/groceryImages/carrot.png";
-import EggplantImg from "../../assets/images/groceryImages/eggplant.png";
-import GarlicImg from "../../assets/images/groceryImages/garlic.png";
-import LeaksImg from "../../assets/images/groceryImages/garlic.png";
-import OnionImg from "../../assets/images/groceryImages/onion.png";
-import PotatoImg from "../../assets/images/groceryImages/potato.png";
+import {AllProducts} from "../../constants/AllProducts";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store/reducers/RootReducer";
 
 type CartTableProps = {
     onGetTotal: (total: number) => void
@@ -21,32 +17,29 @@ type CartTableProps = {
 
 const CartTable: React.FC<CartTableProps> = (props) => {
     const {onGetTotal} = props;
-
-    const cartItems: ICheckoutProduct[] = [
-        {quantity: 4, product: {id: "fdfdf32323", name: "Cabbage", image: CabbageImg, currentPrice: 35, oldPrice: 45}},
-        {quantity: 5, product: {id: "fdfdf323d3", name: "Carrot", image: CarrotImg, currentPrice: 30, oldPrice: 45}},
-        {quantity: 2, product: {id: "fdfdf323s", name: "Eggplant", image: EggplantImg, currentPrice: 35, oldPrice: 45}},
-        {quantity: 1, product: {id: "fdfdf323f3", name: "Garlic", image: GarlicImg, currentPrice: 35, oldPrice: 45}},
-        {quantity: 6, product: {id: "fdfdf323w3", name: "Leaks", image: LeaksImg, currentPrice: 35, oldPrice: 45}},
-        {quantity: 8, product: {id: "fdfdf323t3", name: "Onion", image: OnionImg, currentPrice: 30, oldPrice: 45}},
-        {quantity: 3, product: {id: "fdfdf323u3", name: "Potato", image: PotatoImg, currentPrice: 35, oldPrice: 45}}
-    ];
+    const checkoutProducts: ICheckoutProduct[] = useSelector((state: RootState) => state.cartReducer.productsInCart);
 
     let total: number = 0;
+    let index: number = 0;
     const products: any = [];
-    cartItems.map((checkedProduct: ICheckoutProduct, index: number) => {
-        if (checkedProduct.quantity) {
-            total += checkedProduct.product.currentPrice * checkedProduct.quantity;
-            products.push({
-                id: index + 1,
-                item: <CartImage image={checkedProduct.product.image}/>,
-                name: checkedProduct.product.name,
-                qty: <Quantity quantity={checkedProduct.quantity} index={index}/>,
-                unitPrice: <UnitPrice price={checkedProduct.product.currentPrice}/>,
-                amount: <UnitPrice price={checkedProduct.product.currentPrice * checkedProduct.quantity}/>,
-                deleteIcon: <DeleteIcon index={index} id={checkedProduct.product.id}/>
-            })
-        }
+    AllProducts.map((product: IProduct) => {
+        checkoutProducts.map((checkoutProduct: ICheckoutProduct) => {
+            if (checkoutProduct.id === product.id) {
+                index += 1;
+                if (checkoutProduct.quantity) {
+                    total += product.currentPrice * checkoutProduct.quantity;
+                    products.push({
+                        id: index,
+                        item: <CartImage image={product.image}/>,
+                        name: product.name,
+                        qty: <Quantity quantity={checkoutProduct.quantity} index={index} id={product.id}/>,
+                        unitPrice: <UnitPrice price={product.currentPrice}/>,
+                        amount: <UnitPrice price={product.currentPrice * checkoutProduct.quantity}/>,
+                        deleteIcon: <DeleteIcon size={15} color="black" id={product.id}/>
+                    })
+                }
+            }
+        })
     });
 
     onGetTotal(total);

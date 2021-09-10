@@ -1,23 +1,20 @@
 import React, {useRef, useState} from "react";
 import {Col, Container, Overlay, Popover, Row} from "react-bootstrap";
 import EmptyCartPreview from "./EmptyCartPreview";
-import {ICheckoutProduct} from "../../types/types";
-import CabbageImg from '../../assets/images/groceryImages/cabbage.png';
-import CarrotImg from '../../assets/images/groceryImages/carrot.png';
-import EggplantImg from '../../assets/images/groceryImages/eggplant.png';
-import GarlicImg from '../../assets/images/groceryImages/garlic.png';
-import LeaksImg from '../../assets/images/groceryImages/garlic.png';
-import OnionImg from '../../assets/images/groceryImages/onion.png';
-import PotatoImg from '../../assets/images/groceryImages/potato.png';
+import {ICheckoutProduct, IProduct} from "../../types/types";
 import CheckOutBtn from "../common/CheckOutBtn";
 import CartPreviewDetails from "./CartPreviewDetails";
 import CartItem from "./CartItem";
 import CartIcon from "./CartIcon";
+import {AllProducts} from "../../constants/AllProducts";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store/reducers/RootReducer";
 
 
 const CartPreview: React.FC = () => {
     const [displayCart, setDisplayCart] = useState<boolean>(false);
     const [target, setTarget] = useState(null);
+    const checkoutProducts: ICheckoutProduct[] = useSelector((state: RootState) => state.cartReducer.productsInCart);
     const ref = useRef(null);
     let subTotal = 0;
 
@@ -25,20 +22,25 @@ const CartPreview: React.FC = () => {
         setDisplayCart(!displayCart)
         setTarget(event.target);
     };
-
-    const cartItems: ICheckoutProduct[] = [
-        {quantity: 4, product: {id: "fdfdf32323", name: "Cabbage", image: CabbageImg, currentPrice: 35, oldPrice: 45}},
-        {quantity: 5, product: {id: "fdfdf323d3", name: "Carrot", image: CarrotImg, currentPrice: 30, oldPrice: 45}},
-        {quantity: 2, product: {id: "fdfdf323s", name: "Eggplant", image: EggplantImg, currentPrice: 35, oldPrice: 45}},
-        {quantity: 1, product: {id: "fdfdf323f3", name: "Garlic", image: GarlicImg, currentPrice: 35, oldPrice: 45}},
-        {quantity: 6, product: {id: "fdfdf323w3", name: "Leaks", image: LeaksImg, currentPrice: 35, oldPrice: 45}},
-        {quantity: 8, product: {id: "fdfdf323t3", name: "Onion", image: OnionImg, currentPrice: 30, oldPrice: 45}},
-        {quantity: 3, product: {id: "fdfdf323u3", name: "Potato", image: PotatoImg, currentPrice: 35, oldPrice: 45}}
-    ];
+    const cartRows: any = [];
+    AllProducts.map((product: IProduct) => {
+        checkoutProducts.map((checkoutProduct: ICheckoutProduct, index: number) => {
+            if (checkoutProduct.id === product.id) {
+                if (checkoutProduct.quantity) {
+                    subTotal += checkoutProduct.quantity * product.currentPrice;
+                    cartRows.push(<CartItem
+                        key={index}
+                        product={product}
+                        quantity={checkoutProduct.quantity}
+                        index={index}/>)
+                }
+            }
+        })
+    });
 
     return (
         <div ref={ref}>
-            <CartIcon handleClick={handleClick} itemCount={cartItems.length}/>
+            <CartIcon handleClick={handleClick} itemCount={checkoutProducts.length}/>
             <Overlay
                 show={displayCart}
                 target={target}
@@ -47,29 +49,19 @@ const CartPreview: React.FC = () => {
                 rootClose={true}
                 rootCloseEvent='mousedown'
             >
-                <Popover id="popover-contained" className={cartItems.length === 0 ?
+                <Popover id="popover-contained" className={checkoutProducts.length === 0 ?
                     `empty-cart-popover mt-2 mt-md-3 py-2 px-3` : `cart-preview-popover mt-2 mt-md-3 py-2`}>
                     <Container className="cart-preview-container px-2">
                         <Row className="cart-preview m-0 p-0">
-                            {cartItems.length === 0 ? <EmptyCartPreview/> :
+                            {checkoutProducts.length === 0 ? <EmptyCartPreview/> :
                                 <React.Fragment>
                                     <Col xs={12} className="item-table">
-                                        {cartItems.map((item: ICheckoutProduct, index: number) => {
-                                            if (item.quantity) {
-                                                subTotal += item.quantity * item.product.currentPrice;
-                                                return (
-                                                    <CartItem
-                                                        key={index}
-                                                        product={item.product}
-                                                        quantity={item.quantity}
-                                                        index={index}/>
-                                                );
-                                            }
-                                        })
-                                        }
+                                        {cartRows.map((item: any) => {
+                                            return item;
+                                        })}
                                     </Col>
                                     <Col xs={12} className="pr-4">
-                                        <CartPreviewDetails subTotal={subTotal} count={cartItems.length}/>
+                                        <CartPreviewDetails subTotal={subTotal} count={checkoutProducts.length}/>
                                     </Col>
                                     <Col xs={12}>
                                         <CheckOutBtn

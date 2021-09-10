@@ -1,10 +1,10 @@
 import React from 'react';
 import {Col, Container, Row} from "react-bootstrap";
-import {IProducts} from "../../types/types";
+import {ICheckoutFilterProducts} from "../../types/types";
 import ProductCategoryArea from "./ProductCategoryArea";
 
 type ProductsProps = {
-    products: IProducts[]
+    products: ICheckoutFilterProducts[]
 }
 
 const Products: React.FC<ProductsProps> = (props) => {
@@ -15,9 +15,9 @@ const Products: React.FC<ProductsProps> = (props) => {
         <Container>
             <Row className='products justify-content-center'>
                 <Col xs={12}>
-                    {products.map((shopProducts: IProducts, index: number) =>
-                        <ProductCategoryArea products={shopProducts.productDetails} key={index}
-                                             category={shopProducts.category}/>
+                    {products.map((shopProducts: ICheckoutFilterProducts, index: number) =>
+                        <ProductCategoryArea products={shopProducts.products} key={index}
+                                             category={shopProducts.category} unit={shopProducts.unit}/>
                     )}
                 </Col>
             </Row>

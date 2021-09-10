@@ -10,10 +10,16 @@ export interface ICategories {
 
 export interface IProducts {
     category: string
-    productDetails: IProduct[]
+    products: IProduct[]
 }
 
-export interface Item {
+export interface ICheckoutFilterProducts {
+    category: string
+    unit: boolean
+    products: ICheckoutFilterProduct[]
+}
+
+export interface IProduct {
     id: string
     name: string
     image: string
@@ -21,14 +27,15 @@ export interface Item {
     oldPrice: number | null
 }
 
-export interface IProduct {
-    product: Item,
-    inCart: boolean
+export interface ICheckoutProduct {
+    id: string,
+    quantity: number
 }
 
-export interface ICheckoutProduct {
-    quantity: number,
-    product: Item
+export interface ICheckoutFilterProduct {
+    product: IProduct
+    inCart: boolean
+    quantity: number
 }
 
 export interface IOption {

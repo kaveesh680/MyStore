@@ -1,19 +1,24 @@
 import React from "react";
 import {Col, Row} from "react-bootstrap";
 import {BiMinusCircle, BiPlusCircle} from "react-icons/all";
+import {useDispatch} from "react-redux";
+import {changeQuantity} from "../../store/actions/CartActions";
 
 type QuantityProps = {
     quantity: number
     index: number
+    id: string
 }
 
 const Quantity: React.FC<QuantityProps> = (props) => {
-    const {quantity, index} = props;
+    const {quantity, index, id} = props;
+    const dispatch = useDispatch();
 
     const handleOnClick = (change: number) => {
         if (change < 0 && quantity === 1) {
             return
         }
+        dispatch(changeQuantity(id, change));
     }
 
     return (
