@@ -1,0 +1,155 @@
+@import "../variables";
+
+.productsTable {
+  font-size: 1em;
+
+  .createProductBtn {
+    button {
+      font-weight: 500;
+    }
+  }
+
+  .card-body {
+    padding-top: 6em;
+    position: relative;
+
+    table {
+      border: none;
+
+      thead {
+        tr {
+          border-top: none;
+
+          th:first-child {
+            text-align: left;
+          }
+
+          th {
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            text-align: center;
+          }
+
+          th:nth-child(3) {
+            text-align: center;
+            max-width: 15.409375em;
+            min-width: 15em;
+
+            label {
+              position: absolute;
+              top: 1.5em;
+              left: 3em;
+              z-index: 5;
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          text-align: center;
+
+          td:first-child {
+            text-align: left;
+          }
+
+          td {
+            border-left: none;
+            border-right: none;
+            text-align: center;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+
+  .actionBtns {
+    min-width: 5em;
+  }
+
+  .react-bootstrap-table-pagination {
+    div {
+      span:first-child {
+        margin-right: 10px;
+      }
+    }
+
+    div:nth-child(2) {
+      ul {
+        float: right;
+      }
+    }
+
+    .react-bootstrap-table-pagination-list {
+      ul {
+        .active {
+          a {
+            background-color: $checkout-active-pagination-color;
+          }
+        }
+
+        li {
+          a {
+            color: $checkout-pagination-color;
+            border-color: $checkout-pagination-color;
+          }
+        }
+      }
+    }
+  }
+
+  .tr-image {
+    width: 90px;
+  }
+
+  .react-bootstrap-table table {
+    table-layout: auto;
+  }
+
+  svg {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: $layout-breakpoint-xs) {
+  .productsTable {
+    font-size: .8em;
+
+    .card-body {
+      position: relative;
+      padding-top: 5em;
+
+      table {
+        thead {
+          tr {
+            th:nth-child(3) {
+              label {
+                position: absolute;
+                top: .1em;
+                left: .2em;
+                z-index: 5;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .tr-image {
+      width: 50px;
+    }
+
+  }
+}
+
+@media (max-width: $layout-breakpoint-lg + 35px) and (min-width: $layout-breakpoint-xs) {
+  .productsTable {
+
+    .tr-image {
+      width: 90px;
+    }
+
+  }
+}

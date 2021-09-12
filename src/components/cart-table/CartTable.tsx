@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import BootstrapTable, {PaginationOptions} from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import Quantity from "./Quantity";
@@ -7,7 +7,6 @@ import CartImage from "./CartImage";
 import UnitPrice from "./UnitPrice";
 import {ICheckoutProduct, IProduct} from "../../types/types";
 import EmptyCartPreview from "../cart-preview/EmptyCartPreview";
-import {AllProducts} from "../../constants/AllProducts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store/reducers/RootReducer";
 
@@ -17,12 +16,23 @@ type CartTableProps = {
 
 const CartTable: React.FC<CartTableProps> = (props) => {
     const {onGetTotal} = props;
+    const [allProducts, setAllProducts] = useState<IProduct[]>([]);
+    const fruits: IProduct[] = useSelector((state: RootState) => state.productReducer.fruit);
+    const meats: IProduct[] = useSelector((state: RootState) => state.productReducer.meat);
+    const vegetables: IProduct[] = useSelector((state: RootState) => state.productReducer.vegetable);
+    const electronics: IProduct[] = useSelector((state: RootState) => state.productReducer.electronic);
+    const pharmacies: IProduct[] = useSelector((state: RootState) => state.productReducer.pharmacy);
+    const foods: IProduct[] = useSelector((state: RootState) => state.productReducer.food);
     const checkoutProducts: ICheckoutProduct[] = useSelector((state: RootState) => state.cartReducer.productsInCart);
+
+    useEffect(() => {
+        setAllProducts([...fruits, ...meats, ...vegetables, ...electronics, ...pharmacies, ...foods])
+    }, [fruits, meats, vegetables, electronics, pharmacies, foods, checkoutProducts])
 
     let total: number = 0;
     let index: number = 0;
     const products: any = [];
-    AllProducts.map((product: IProduct) => {
+    allProducts.map((product: IProduct) => {
         checkoutProducts.map((checkoutProduct: ICheckoutProduct) => {
             if (checkoutProduct.id === product.id) {
                 index += 1;

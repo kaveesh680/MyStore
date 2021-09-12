@@ -3,8 +3,7 @@ import {CartActionTypes} from "../types/CartActionTypes";
 import {ADD_TO_CART, CHANGE_QUANTITY, DELETE_FROM_CART, UPDATE_CART} from "../constants/CartConstants";
 
 const initialState: cartStateType = {
-    productsInCart: [{id: "0503", quantity: 5}
-    ]
+    productsInCart: []
 }
 
 interface cartStateType {

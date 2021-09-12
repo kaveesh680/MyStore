@@ -27,6 +27,11 @@ export interface IProduct {
     oldPrice: number | null
 }
 
+export interface IProductWithCategory {
+    category: string
+    product: IProduct
+}
+
 export interface ICheckoutProduct {
     id: string,
     quantity: number
@@ -42,4 +47,9 @@ export interface IOption {
     value: string,
     label: string,
     flag: string
+}
+
+export interface ISelectOption {
+    label: string,
+    value:string
 }

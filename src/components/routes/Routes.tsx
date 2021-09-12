@@ -1,6 +1,7 @@
 import React, {lazy, Suspense} from "react";
 import Loading from "../loading/Loading";
 import {Redirect, Route, Switch, useLocation} from 'react-router-dom';
+import Admin from "../admin/Admin";
 
 const Welcome = lazy(() => import('../welcome-banner/Welcome'));
 const SearchBar = lazy(() => import('../search-bar/SearchBar'));
@@ -18,6 +19,9 @@ const Routes: React.FC = () => {
     return (
         <Suspense fallback={<Loading/>}>
             <Switch location={location}>
+                <Route path='/admin'>
+                    <Admin/>
+                </Route>
                 <Route path='/register'>
                     <Register/>
                 </Route>

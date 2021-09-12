@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Col, Container, Overlay, Popover, Row} from "react-bootstrap";
 import EmptyCartPreview from "./EmptyCartPreview";
 import {ICheckoutProduct, IProduct} from "../../types/types";
@@ -6,7 +6,6 @@ import CheckOutBtn from "../common/CheckOutBtn";
 import CartPreviewDetails from "./CartPreviewDetails";
 import CartItem from "./CartItem";
 import CartIcon from "./CartIcon";
-import {AllProducts} from "../../constants/AllProducts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store/reducers/RootReducer";
 
@@ -14,16 +13,27 @@ import {RootState} from "../../store/reducers/RootReducer";
 const CartPreview: React.FC = () => {
     const [displayCart, setDisplayCart] = useState<boolean>(false);
     const [target, setTarget] = useState(null);
+    const [allProducts, setAllProducts] = useState<IProduct[]>([]);
+    const fruits: IProduct[] = useSelector((state: RootState) => state.productReducer.fruit);
+    const meats: IProduct[] = useSelector((state: RootState) => state.productReducer.meat);
+    const vegetables: IProduct[] = useSelector((state: RootState) => state.productReducer.vegetable);
+    const electronics: IProduct[] = useSelector((state: RootState) => state.productReducer.electronic);
+    const pharmacies: IProduct[] = useSelector((state: RootState) => state.productReducer.pharmacy);
+    const foods: IProduct[] = useSelector((state: RootState) => state.productReducer.food);
     const checkoutProducts: ICheckoutProduct[] = useSelector((state: RootState) => state.cartReducer.productsInCart);
     const ref = useRef(null);
     let subTotal = 0;
+
+    useEffect(() => {
+        setAllProducts([...fruits, ...meats, ...vegetables, ...electronics, ...pharmacies, ...foods])
+    }, [fruits, meats, vegetables, electronics, pharmacies, foods, checkoutProducts])
 
     const handleClick = (event: any) => {
         setDisplayCart(!displayCart)
         setTarget(event.target);
     };
     const cartRows: any = [];
-    AllProducts.map((product: IProduct) => {
+    allProducts.map((product: IProduct) => {
         checkoutProducts.map((checkoutProduct: ICheckoutProduct, index: number) => {
             if (checkoutProduct.id === product.id) {
                 if (checkoutProduct.quantity) {

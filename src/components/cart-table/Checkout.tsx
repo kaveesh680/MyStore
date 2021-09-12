@@ -22,8 +22,9 @@ const Checkout: React.FC = () => {
                     <Row>
                         <Col xs={12}>
                             <Row className='pl-0 pl-md-4 ml-0 mr-md-2 mr-0 pr-md-3'>
-                                <CheckoutHeader/>
-                                <ContinueShoppingBtn/>
+                                <CheckoutHeader header="CheckOut Page"/>
+                                <ContinueShoppingBtn path="/home" content="Continue Shopping"
+                                                     variant="outline-secondary" classname="px-0"/>
                             </Row>
                         </Col>
                     </Row>

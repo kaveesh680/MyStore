@@ -16,7 +16,6 @@ const Quantity: React.FC<QuantityProps> = (props) => {
 
     const {quantity, unit, setQuantity, inCart, id} = props;
     const checkoutProducts: ICheckoutProduct[] = useSelector((state: RootState) => state.cartReducer.productsInCart);
-    console.log(checkoutProducts);
 
     const [value, setValue] = useState<number | null>(null);
     const [productUnit, setProductUnit] = useState<boolean>(true);

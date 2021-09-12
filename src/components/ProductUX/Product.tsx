@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Col, Image, Row} from "react-bootstrap";
 import {ICheckoutFilterProduct, ICheckoutProduct} from "../../types/types";
 import Name from "./Name";
@@ -21,6 +21,10 @@ const Product: React.FC<ProductProps> = (props) => {
     const {name, image, oldPrice, currentPrice, id} = product.product;
     const [productQuantity, setProductQuantity] = useState(product.quantity);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        setProductQuantity(product.quantity)
+    },[product.quantity])
 
     const handleOnUpdateToCart = () => {
         const checkoutProduct: ICheckoutProduct = {
