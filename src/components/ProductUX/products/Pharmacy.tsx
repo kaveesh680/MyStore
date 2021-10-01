@@ -12,7 +12,7 @@ const Pharmacy: React.FC = () => {
 
     useEffect(() => {
         setPharmacyProducts([{
-            category: "Fruit",
+            category: "Pharmacy",
             unit: false,
             products: GetCheckoutProducts(pharmacies,checkoutProducts)
         }])

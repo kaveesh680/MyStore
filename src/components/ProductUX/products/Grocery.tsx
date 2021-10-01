@@ -10,18 +10,36 @@ const Grocery: React.FC = () => {
     const fruits: IProduct[] = useSelector((state: RootState) => state.productReducer.fruit);
     const meats: IProduct[] = useSelector((state: RootState) => state.productReducer.meat);
     const vegetables: IProduct[] = useSelector((state: RootState) => state.productReducer.vegetable);
-    const [groceryProducts, setGroceryProducts] = useState<ICheckoutFilterProducts[]>([]);
+    const [fruitProducts, setFruitProducts] = useState<ICheckoutFilterProducts[]>([]);
+    const [meatProducts, setMeatProducts] = useState<ICheckoutFilterProducts[]>([]);
+    const [vegetableProducts, setVegetableProducts] = useState<ICheckoutFilterProducts[]>([]);
+
 
     useEffect(() => {
-        setGroceryProducts([{
+        setFruitProducts([{
             category: "Fruit",
-            unit: false,
-            products: GetCheckoutProducts([...fruits, ...meats, ...vegetables], checkoutProducts)
+            unit: true,
+            products: GetCheckoutProducts([...fruits], checkoutProducts)
+        }])
+        setMeatProducts([{
+            category: "Meat",
+            unit: true,
+            products: GetCheckoutProducts([...meats], checkoutProducts)
+        }])
+        setVegetableProducts([{
+            category: "Vegetable",
+            unit: true,
+            products: GetCheckoutProducts([...vegetables], checkoutProducts)
         }])
     }, [checkoutProducts])
 
     return (
-        <Products products={groceryProducts}/>
+        <React.Fragment>
+            <Products products={fruitProducts}/>
+            <Products products={meatProducts}/>
+            <Products products={vegetableProducts}/>
+        </React.Fragment>
+
     )
 }
 
