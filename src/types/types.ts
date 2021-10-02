@@ -51,5 +51,31 @@ export interface IOption {
 
 export interface ISelectOption {
     label: string,
-    value:string
+    value: string
+}
+
+export interface IDeliveryForm {
+    fullName: string,
+    address: string,
+    city: string,
+    postalCode: string,
+    country: string,
+    countryCode: string,
+    phoneNumber: string,
+    email: string,
+    paymentMethod: string,
+    password: string,
+    retypeEmail: string,
+    checkBtn: boolean
+    instruction: string | null
+}
+
+export interface IShippingForm {
+    name: string,
+    billingAddress: string,
+    city: string,
+    postalCode: string,
+    country: string,
+    countryCode: string,
+    phoneNumber: string
 }
