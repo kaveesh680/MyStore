@@ -5,7 +5,7 @@ import Loading from "../loading/Loading";
 const AdminNavBar = lazy(() => import("./AdminNavBar"));
 const AdminProducts = lazy(() => import("./all-productUX/AdminProducts"));
 const DashBoard = lazy(() => import("./dashboard/DashBoard"));
-const Orders = lazy(() => import("./orders/Orders"));
+const AllOrders = lazy(() => import("./orders/AllOrders"));
 const AddProduct = lazy(() => import("./add-product/AddProduct"));
 
 const Admin: React.FC = () => {
@@ -25,7 +25,7 @@ const Admin: React.FC = () => {
                         <AddProduct/>
                     </Route>
                     <Route path={`${path}/orders`}>
-                        <Orders/>
+                        <AllOrders/>
                     </Route>
                     <Route path={`${path}/dashboard`}>
                         <DashBoard/>

@@ -3,10 +3,16 @@ import {Col, Nav, Navbar, Row} from "react-bootstrap";
 import HeaderNavLink from "./HeaderNavLink";
 import BtnArea from "./BtnArea";
 import DarkModeToggle from "react-dark-mode-toggle";
+import {DayMode, NightMode} from '../../custom-styles/NightMode';
 
 const HeaderNavBar: React.FC = () => {
 
     const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+    if (isDarkMode) {
+        NightMode()
+    } else {
+        DayMode();
+    }
 
     return (
         <Row>

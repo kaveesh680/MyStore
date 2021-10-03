@@ -1,0 +1,12 @@
+@import "../variables";
+
+.modal{
+  .modal-dialog{
+    .modal-content{
+      .modal-body{
+        overflow-y: scroll;
+        height: 15em;
+      }
+    }
+  }
+}
